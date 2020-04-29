@@ -20,7 +20,7 @@ class MovieHorizontal extends StatelessWidget {
         pageSnapping: false,
         controller:PageController(
           initialPage: 1,
-          viewportFraction: 0.3
+          viewportFraction: 0.27
         ) ,
         children: _tarjetas(context),
       ),
@@ -35,7 +35,7 @@ class MovieHorizontal extends StatelessWidget {
     return peliculas.map( (pelicula){
 
       return Container(
-        margin: EdgeInsets.only(right: 15.0),
+        margin: EdgeInsets.only(right: 30.0),
         child: Column(
           
           children: <Widget>[
