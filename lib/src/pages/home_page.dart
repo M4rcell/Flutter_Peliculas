@@ -25,9 +25,12 @@ class HomePage extends StatelessWidget {
       ),
       body:Container(
         child: Column(
+          // separacio entre elementos
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             //Widget Personalisados
             _swiperTarjetas(),
+            _footer(context),
           ],
         ),
  
@@ -66,5 +69,33 @@ class HomePage extends StatelessWidget {
         
       },
     );
+   }
+
+   Widget _footer( BuildContext context){
+
+     return Container(
+       //ocpuar todo  el espacio de horizontal
+       width: double.infinity,
+       child: Column(
+         children: <Widget>[
+           Text('Populares',style:Theme.of(context).textTheme.subhead),
+
+           FutureBuilder(
+             future: peliculasProvider.getPopulares(),
+             //initialData: InitialData,
+             builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+
+              // print(snapshot.data);
+              // mostrar el titulo de peliculas
+              // has el ForEach()  si existe data
+              snapshot.data?.forEach((p) => print(p.title));
+
+               return  Container();
+             },
+           ),
+         ],
+       ),
+
+     );
    }
 }
