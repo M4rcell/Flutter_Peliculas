@@ -5,7 +5,17 @@ import 'package:http/http.dart' as  http;
 
 import 'package:peliculas/src/models/pelicula_model.dart';
 
-Future <List<Pelicula>> _procesarRespuesta(Uri url) async{
+
+
+class PeliculasProvider{
+
+  
+ String _apikey    = 'caae07fa3cbe7d5ced7cbe2dfaef0b5b';
+ String _url       = 'api.themoviedb.org';
+ String _languaje  = 'es-ES';
+
+
+ Future <List<Pelicula>> _procesarRespuesta(Uri url) async{
 
     final resp =  await http.get(url);
 
@@ -30,13 +40,6 @@ Future <List<Pelicula>> _procesarRespuesta(Uri url) async{
     
 
 }
-
-class PeliculasProvider{
-
-  
- String _apikey    = 'caae07fa3cbe7d5ced7cbe2dfaef0b5b';
- String _url       = 'api.themoviedb.org';
- String _languaje  = 'es-ES';
 
  
  Future<List<Pelicula>> getEnCines()async{

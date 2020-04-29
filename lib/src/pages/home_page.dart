@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:peliculas/src/providers/peliculas_provider.dart';
 
 import 'package:peliculas/src/widgets/card_swiper_widget.dart';
+import 'package:peliculas/src/widgets/movie_horizontal.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -77,8 +78,12 @@ class HomePage extends StatelessWidget {
        //ocpuar todo  el espacio de horizontal
        width: double.infinity,
        child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,         
          children: <Widget>[
-           Text('Populares',style:Theme.of(context).textTheme.subhead),
+         Container(
+           padding: EdgeInsets.only(left: 20.0),
+           child: Text('Populares',style:Theme.of(context).textTheme.subhead),),
+           SizedBox(height: 5.0,),
 
            FutureBuilder(
              future: peliculasProvider.getPopulares(),
@@ -88,9 +93,23 @@ class HomePage extends StatelessWidget {
               // print(snapshot.data);
               // mostrar el titulo de peliculas
               // has el ForEach()  si existe data
-              snapshot.data?.forEach((p) => print(p.title));
+              //snapshot.data?.forEach((p) => print(p.title));
 
-               return  Container();
+              //Si viene data
+              if (snapshot.hasData) {
+
+                return MovieHorizontal(
+                  peliculas: snapshot.data,
+                  );
+                
+              }
+              else{
+
+                return Center(child: CircularProgressIndicator());
+              }
+
+             // return Container();
+
              },
            ),
          ],
