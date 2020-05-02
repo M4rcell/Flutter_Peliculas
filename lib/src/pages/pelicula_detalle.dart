@@ -15,11 +15,41 @@ class PeliculaDetalle extends StatelessWidget {
    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      body: Center(
-        child: Text(pelicula.title ),
-
-      ),
+      body: Center(child: FadeInImage(
+        placeholder: AssetImage('assets/img/loading.jpg'),
+        image: NetworkImage(pelicula.getBackgroundImg())
+        ),
+      )
       
     );
+  }
+
+
+  Widget _crearAppbar( Pelicula pelicula){
+    // es similar a appBar
+    return SliverAppBar(
+      elevation: 2.0,
+      backgroundColor: Colors.indigoAccent,
+      //Altura de AppBar
+      expandedHeight:200.0,
+      floating:false,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle:true,
+        title: Text(
+          pelicula.title,
+          style: TextStyle(color:Colors.white,fontSize: 16.0),
+        ),
+        background: FadeInImage(
+          image: NetworkImage(pelicula.getBackgroundImg()),
+          placeholder: AssetImage('assets/img/loading.jpg'),
+          fadeInDuration:Duration(microseconds:200) ,
+          fit: BoxFit.cover,
+          width: 100.0,
+        ),
+      ),
+    );
+
+
   }
 }

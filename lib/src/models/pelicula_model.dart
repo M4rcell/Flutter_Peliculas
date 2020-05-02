@@ -89,5 +89,20 @@ class Pelicula {
 
   }
 
+    getBackgroundImg(){
+    
+    if (backdropPath == null) {
+
+       return 'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg';
+       //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+    }
+    else {
+              // https://image.tmdb.org/t/p/w500/
+        return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+
+    }
+
+  }
+
 
 }
