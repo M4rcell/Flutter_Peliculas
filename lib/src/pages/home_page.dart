@@ -84,9 +84,13 @@ class HomePage extends StatelessWidget {
            padding: EdgeInsets.only(left: 20.0),
            child: Text('Populares',style:Theme.of(context).textTheme.subhead),),
            SizedBox(height: 5.0,),
-
-           FutureBuilder(
-             future: peliculasProvider.getPopulares(),
+            
+            //FutureBuilder = solo se ejecuta una sola vez
+            // StreamBuilder =  se ejecuta  cada vez haya un cambio
+           StreamBuilder(
+             stream: peliculasProvider.popularesStream,
+             //initialData: [],
+             //future: peliculasProvider.getPopulares(),
              //initialData: InitialData,
              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
 
