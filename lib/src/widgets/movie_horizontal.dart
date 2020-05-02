@@ -60,10 +60,9 @@ class MovieHorizontal extends StatelessWidget {
 
   Widget _targeta(BuildContext context,Pelicula pelicula){
     
-      return Container(
+      final tarjeta = Container(
         margin: EdgeInsets.only(right: 30.0),
         child: Column(
-          
           children: <Widget>[
              ClipRRect(
                borderRadius: BorderRadius.circular(20.0),
@@ -83,8 +82,23 @@ class MovieHorizontal extends StatelessWidget {
           ],
         ),
       );
+
+
+      return GestureDetector(
+        child: tarjeta,
+        onTap: (){
+
+          print('ID de la pelicula ${pelicula.id}');
+          // ir de una pagina a otra
+         // enviando a la lista de peliculas
+          Navigator.pushNamed(context, 'detalle',arguments: pelicula);
+
+        },
+      );
   }
 
+  
+//******************** NO SE UTILIZA********************************
   List<Widget> _tarjetas(BuildContext context){
     // retorna una lista de peliculas
     return peliculas.map( (pelicula){
