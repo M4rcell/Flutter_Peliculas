@@ -16,7 +16,10 @@ class PeliculasProvider{
  String _languaje  = 'es-ES';
 
  // cambiar numero de paginas
- int _popularesPage=0;
+ int  _popularesPage = 0;
+
+//para cargar poco a poco
+ bool _cargando      = false;
 
  //Listado de peliculas
  List<Pelicula> _populares = new List();
@@ -109,7 +112,16 @@ void disposeStream(){
  }
  Future<List<Pelicula>> getPopulares()async{
 
+   if (_cargando) {
+       return [];
+   }
+   else{
+     _cargando=true;
+   }
+
  _popularesPage ++;
+
+ print("Cargando Siguientes ....... ");
 
    final url = Uri.https(_url, '3/movie/popular',{
      'api_key'  : _apikey,
@@ -125,6 +137,8 @@ void disposeStream(){
 
    //mandarlo y colocarlo al inicio de datos
    popularesSink(_populares);
+
+   _cargando= false;
 
    return resp;
   

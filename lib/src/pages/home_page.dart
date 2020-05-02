@@ -12,6 +12,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+  //llama el listado de polulares
+  peliculasProvider.getPopulares();
+
     return Scaffold(
       appBar:AppBar(
         centerTitle: false,
@@ -102,8 +106,10 @@ class HomePage extends StatelessWidget {
               //Si viene data
               if (snapshot.hasData) {
 
+                // enviar al constructor MovieHorizontal de movie horizonal
                 return MovieHorizontal(
                   peliculas: snapshot.data,
+                  siguientePagina: peliculasProvider.getPopulares,
                   );
                 
               }

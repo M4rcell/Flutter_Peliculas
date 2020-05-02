@@ -6,23 +6,50 @@ class MovieHorizontal extends StatelessWidget {
 
   final List<Pelicula> peliculas;
 
+  final siguientePagina;
+
+  // escuchar todo los cambios
+   final _pageController= new PageController(
+      initialPage: 1,
+      viewportFraction: 0.27
+   );
+
   //constructor
-  MovieHorizontal({@required this.peliculas});
+  MovieHorizontal({@required this.peliculas,@required this.siguientePagina});
   
   @override
   Widget build(BuildContext context) {
     //para saber cual es el tamaño de esa vemtana
     final _screenSize = MediaQuery.of(context).size;
+
+ // se dispara cada vez que se mueva el scroll horizonal
+   _pageController.addListener((){
+
+  // si la posicion actual es mayor o ingual a la posicion maxima -200
+     if (_pageController.position.pixels >= _pageController.position.maxScrollExtent-200) {
+       
+       //cargar las siguientes peliculas
+       siguientePagina();
+
+     }
+
+
+   });
+
     return Container(
       height: _screenSize.height * 0.2,
       // lista de Scrooll
-      child: PageView(
+      
+      //PageView = rendereza todo el listado de peliculas de forma simultaneo
+      //PageView.Builder = renderiza deacuerdo si es necesario.
+      child: PageView.builder(
         pageSnapping: false,
-        controller:PageController(
-          initialPage: 1,
-          viewportFraction: 0.27
-        ) ,
-        children: _tarjetas(context),
+        controller:_pageController,
+       // children: _tarjetas(context),
+       itemCount: peliculas.length,
+       itemBuilder: (context,i){
+         return _targeta(context,peliculas[i]);
+       },
       ),
 
       
@@ -30,10 +57,9 @@ class MovieHorizontal extends StatelessWidget {
 
   }
 
-  List<Widget> _tarjetas(BuildContext context){
-    // retorna una lista de peliculas
-    return peliculas.map( (pelicula){
 
+  Widget _targeta(BuildContext context,Pelicula pelicula){
+    
       return Container(
         margin: EdgeInsets.only(right: 30.0),
         child: Column(
@@ -57,6 +83,35 @@ class MovieHorizontal extends StatelessWidget {
           ],
         ),
       );
+  }
+
+  List<Widget> _tarjetas(BuildContext context){
+    // retorna una lista de peliculas
+    return peliculas.map( (pelicula){
+
+      // return Container(
+      //   margin: EdgeInsets.only(right: 30.0),
+      //   child: Column(
+          
+      //     children: <Widget>[
+      //        ClipRRect(
+      //          borderRadius: BorderRadius.circular(20.0),
+      //          child: FadeInImage(
+      //            placeholder: AssetImage('assets/img/no-image.jpg'),
+      //             image: NetworkImage(pelicula.getPosterImg()),
+      //             fit: BoxFit.cover,
+      //             height: 100.0,
+      //       ),
+      //       ),
+             
+      //        Text(
+      //          pelicula.title,
+      //          overflow:TextOverflow.ellipsis,
+      //          style:Theme.of(context).textTheme.caption,
+      //        )
+      //     ],
+      //   ),
+      // );
 
     }).toList();//Convierte a una lista
   }
