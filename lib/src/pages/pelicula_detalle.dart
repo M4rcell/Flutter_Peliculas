@@ -59,7 +59,8 @@ class PeliculaDetalle extends StatelessWidget {
         ),
         background: FadeInImage(
           image: NetworkImage(pelicula.getBackgroundImg()),
-          placeholder: AssetImage('assets/img/loading.jpg'),
+          //placeholder: AssetImage('assets/img/no-image.jpg'),
+            placeholder: AssetImage('assets/img/loading.gif'),
           fadeInDuration:Duration(microseconds:2000) ,
           fit: BoxFit.cover,
           width: 20.0,

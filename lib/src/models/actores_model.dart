@@ -19,6 +19,9 @@ class Cast{
   }
 }
 
+
+
+
 class Actor{
   int castId;
   String character;
@@ -50,6 +53,7 @@ class Actor{
     name              = json['name'];
     order             = json['order'];
     profilePath       = json['profile_path'];
+
 
  }
 

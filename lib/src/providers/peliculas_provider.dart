@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as  http;
+import 'package:peliculas/src/models/actores_model.dart';
 
 import 'package:peliculas/src/models/pelicula_model.dart';
 
@@ -173,6 +174,25 @@ void disposeStream(){
   return peliculas.items; */
     
    
+ }
+
+ Future<List<Actor>> getCast(String peliId) async{
+
+   final  url = Uri.http(_url, '3/movie/$peliId/credits',{
+
+     'api_key'  : _apikey,
+     'language' : _languaje,
+
+   });
+  // await se utiliza par esperar la respuesta
+   final  resp = await http.get(url);//llmando la respuesta
+   final decodeData = json.decode(resp.body);//almacena una mapa
+
+   final cast = new Cast.fromJsonList(decodeData['cast']);
+
+   return cast.actores;
+
+
  }
 
 }
