@@ -188,7 +188,7 @@ void disposeStream(){
    final  resp = await http.get(url);//llmando la respuesta
    final decodeData = json.decode(resp.body);//almacena una mapa
 
-   final cast = new Cast.fromJsonList(decodeData['cast']);
+   final cast = new Cast.fromJsonList(decodeData['cast']);//mandamos ladata de su propiedad [cast]
 
    return cast.actores;
 
