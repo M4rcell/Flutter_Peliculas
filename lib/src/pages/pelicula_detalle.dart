@@ -15,12 +15,13 @@ class PeliculaDetalle extends StatelessWidget {
    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      body: Center(child: FadeInImage(
-        placeholder: AssetImage('assets/img/loading.jpg'),
-        image: NetworkImage(pelicula.getBackgroundImg())
-        ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          _crearAppbar(pelicula)
+        ],
+
       )
-      
+            
     );
   }
 
