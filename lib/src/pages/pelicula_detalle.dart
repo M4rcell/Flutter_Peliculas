@@ -81,9 +81,9 @@ class PeliculaDetalle extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         children: <Widget>[
-          //Hero animacion tag ingual
+          //Hero animacion en posters tag ingual
           Hero(
-            tag: pelicula.id,
+            tag: pelicula.uniqueId,
             child: ClipRRect(
               borderRadius:BorderRadius.circular(20.0) ,
               child: Image(
