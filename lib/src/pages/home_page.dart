@@ -30,8 +30,9 @@ class HomePage extends StatelessWidget {
                 context: context, 
                 //llamando a la clase DataSearch
                 delegate: DataSearch(),
-                query: 'Hola',
-                
+                //nombre por defectoen buscador
+                //query: 'Hola',
+
               );
             },
           ),
